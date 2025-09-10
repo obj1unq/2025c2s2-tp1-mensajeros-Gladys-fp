@@ -1,51 +1,53 @@
 
-object puenteBrooklyn {
-   var puedePasar = false
 
+
+object paquete{
+   var paquetePagado = false
+   var destinoPaquete = puenteBrooklyn
+   var mensajero = saraComnor
+
+   method destinoPaquete(_destinoPaquete) {
+     destinoPaquete = _destinoPaquete
+   }
+
+   method mensajero(_mensajero) {
+    mensajero = _mensajero 
+   }
+
+  
+  method paquetePagado(_paquetePagado) {
+       paquetePagado = _paquetePagado
+
+  }
+
+  method sePuedeEntregar() {
+    return paquetePagado and destinoPaquete.puedePasar(mensajero)
+  }
+  
+ }
+
+
+// --------------------- DESTINO ------------------------
+object puenteBrooklyn {
+  
+  
    method puedePasar(mensajero){
-       if (mensajero.peso() <= 1000){
-           puedePasar = true
-       }else{
-           puedePasar = false
-       }
+      return mensajero.peso() <= 1000
+
    }
 }
 
 object matrix {
-   var puedePasar = false
 
-   method puedePasar(mensajero) {
-       if (mensajero.llamar() == "true"){
-           puedePasar = true
-       }else{
-           puedePasar = false
-       }
-   }
- }
+  method puedePasar(mensajero) {
+    return mensajero.puedellamar()
+  }
+   
+}
 
 
 
-object paquete {
-   var paquetePagado = false
-
-   method paquetePagado(cliente) {
-     if (cliente.pago() == "true"){
-       paquetePagado = true
-     }
-   }
-
-  
-   method sePuedeEntregar(cliente, mensajero){
-//       return self.paquetePagado(cliente) &&  matrix.puedePasar(mensajero) || puenteBrooklyn.puedePasar(mensajero)
-   }
- }
-
-
-
-
-
-
-
+//--------------------------------MENSAJEROS------------------------------------  
 
 
 
@@ -55,37 +57,86 @@ object jeaGray {
     method peso() {
       return peso
     }
-    method llamar() {
+    method puedellamar() {
       return true
     }
 }
 
 object neo {
+
+   var credito = true
+
+
    method vuela() {
        return true 
    }
-   method peso() = 0
+   method peso(){
+    return 0
+   } 
+
    method celular() {
        return true
    }
 
-   var credito = true
-   method llamar(){
+  
+   method puedellamar(){
        return credito
    }
  }
 
 object saraComnor {
-   var pesoCamion = 500
-   var pesoMoto = 100
-   const pesoAcoplado =  500
-   var peso = 70
-   method peso(_peso) {
-     peso = _peso
+  var property pesoSara = 70
+  var transporte = camion
+
+  method transporte(_transporte) {
+    transporte = _transporte
+    
+  }
+   method pesoSara(_pesoSara) {
+     pesoSara = _pesoSara
    }
-   method llamar(){
+   method puedellamar(){
        return false
    }
+
+   method peso() {
+    return pesoSara + transporte.peso()
+   } 
+     
+  
  }
 
+//------------------TRANSPORTE-----------------
+
+
+
+
+object camion {
+  const peso = 500 
+  const pesoAcoplado = 500 
+  var cantidadAcoplado =  0
+
+  method pesoAcoplado() {
+    return pesoAcoplado
+  }
+  
+  method cantidadAcoplados(cantidad){
+    cantidadAcoplado = cantidad
+  }
+  
+  method peso() {
+    return peso + cantidadAcoplado + pesoAcoplado
+  }
+
+  
+}
+
+object moto {
+  const peso = 100
+  method peso() {
+   return peso
+    
+  }
+  
+}
 
