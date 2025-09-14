@@ -4,21 +4,18 @@
 object paquete{
    var paquetePagado = false
    var destinoPaquete = puenteBrooklyn
-   var mensajero = saraComnor
+   var mensajero = saraConnor
 
-   method destinoPaquete(_destinoPaquete) {
+  method destinoPaquete(_destinoPaquete) {
      destinoPaquete = _destinoPaquete
-   }
-
-   method mensajero(_mensajero) {
+  }
+  method mensajero(_mensajero) {
     mensajero = _mensajero 
-   }
-
-  
+  }
   method paquetePagado(_paquetePagado) {
        paquetePagado = _paquetePagado
-
   }
+
 
   method sePuedeEntregar() {
     return paquetePagado and destinoPaquete.puedePasar(mensajero)
@@ -84,19 +81,20 @@ object neo {
    }
  }
 
-object saraComnor {
-  var property pesoSara = 70
+object saraConnor {
+  var property pesoSara = 0
   var transporte = camion
 
   method transporte(_transporte) {
     transporte = _transporte
-    
   }
+
    method pesoSara(_pesoSara) {
-     pesoSara = _pesoSara
+    pesoSara = _pesoSara
    }
+
    method puedellamar(){
-       return false
+    return false
    }
 
    method peso() {
@@ -114,18 +112,18 @@ object saraComnor {
 object camion {
   const peso = 500 
   const pesoAcoplado = 500 
-  var cantidadAcoplado =  0
+  var nroAcoplados  =  0
 
   method pesoAcoplado() {
     return pesoAcoplado
   }
   
-  method cantidadAcoplados(cantidad){
-    cantidadAcoplado = cantidad
+  method nroAcoplados(_nroAcoplados){
+    nroAcoplados  = _nroAcoplados
   }
   
   method peso() {
-    return peso + cantidadAcoplado + pesoAcoplado
+    return peso + nroAcoplados  + pesoAcoplado
   }
 
   
@@ -139,4 +137,3 @@ object moto {
   }
   
 }
-

@@ -1,0 +1,38 @@
+
+import mensajero.*
+describe "Paquete de george" {
+    test "El paquete no está pago, y Neo no puede entregar el paquete a la matriz"{
+        paquete.paquetePagado(false)
+        paquete.mensajero(neo)
+        paquete.destinoPaquete(matrix)
+        assert.notThat(paquete. sePuedeEntregar())
+        }
+   
+    test "El paquete está pago, y lo entrega Jean a la Matrix"{
+        paquete.paquetePagado(true)
+        paquete.mensajero(neo)
+        paquete.destinoPaquete(matrix)
+        assert.that(paquete.sePuedeEntregar())
+    }
+
+    test "El paquete está pago, pero no puede ser llevado por Sara a el Puente Brooklyn porque supera el peso del puente"{
+        
+        saraConnor.pesoSara(70)
+        saraConnor.transporte(camion)
+        camion.nroAcoplados(1)
+        paquete.paquetePagado(true)
+        paquete.mensajero(saraConnor)
+        paquete.destinoPaquete(puenteBrooklyn)
+        assert.notThat(paquete.sePuedeEntregar())
+    }
+    test "El paquete está pago y puede ser llevado por Sara Connor en moto al Puente Brooklyn"{
+        
+        saraConnor.pesoSara(70)
+        saraConnor.transporte(moto)
+        paquete.paquetePagado(true)
+        paquete.mensajero(saraConnor)
+        paquete.destinoPaquete(puenteBrooklyn)
+        assert.that(paquete.sePuedeEntregar())
+    
+    } 
+}
